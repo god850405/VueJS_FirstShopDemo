@@ -57,7 +57,7 @@
     <div class="footer">
         <center><p>Author:Marcus<br>Email:god850405@gmail.com</p></center>
     </div>
-    <b-sidebar  id="sidebar" aria-labelledby="sidebartitle" no-header-close shadow>
+    <b-sidebar  id="sidebar" aria-labelledby="sidebartitle" no-header no-header-close shadow>
       <!---------------  左側選單  -------------------->
         <template #default="{ hide }">
               <div class="d-flex bg-dark text-light align-items-center px-3 py-2">
@@ -109,7 +109,8 @@ export default {
     LoginStatus(){
       return (this.$store.state.token!=null) ? true : false
     }
-  },methods:{
+  },
+  methods:{
     Cart(){
       this.$router.push({
           name:'cart'
@@ -174,7 +175,7 @@ html,body{
 }
 
 .popoverCart{
-  max-width: 800px; 
+  min-width: 300px; 
 }
 .field-price{
   color:red;

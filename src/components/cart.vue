@@ -315,7 +315,7 @@ export default {
         this.User.name = this.$store.state.name
         this.$store.state.items.forEach(item => {
             // console.log(`NO : ${item.ProductNo}`)
-            this.$http.get(`https://localhost:44394/Product/GetItemSpecification?no=${item.ProductNo}`)
+            this.$http.get(process.env.VUE_APP_API+`/Product/GetItemSpecification?no=${item.ProductNo}`)
                 .then(response => {
                     this.specification.push(response.data)
                 });
@@ -341,7 +341,7 @@ export default {
             var item = this.$store.state.items[i]
             //console.log(`NO : ${item.ProductNo} SPE  ${item.ProductSpecification}`)
             if(item.ProductNo!=null&&item.ProductSpecification!='未選'){
-                this.$http.get(`https://localhost:44394/Product/GetItemMeasurement?no=${item.ProductNo}&specification=${item.ProductSpecification}`)
+                this.$http.get(process.env.VUE_APP_API+`/Product/GetItemMeasurement?no=${item.ProductNo}&specification=${item.ProductSpecification}`)
                 .then(response => {
                     // this.measurement[i] = response.data;
                     this.$set(this.measurement,i,response.data)

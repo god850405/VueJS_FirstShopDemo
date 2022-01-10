@@ -117,7 +117,7 @@ export default {
   methods: {
     ///-----------外部登入:方法
     OnGoogleAuthSuccess (token,id,name,email) {
-      this.$http.get(`https://localhost:44394/Account/IsEmailExist?email=${email}`).then(response => {
+      this.$http.get(process.env.VUE_APP_API+`/Account/IsEmailExist?email=${email}`).then(response => {
         if(response.data){
           this.login.email = email
           this.login.password = id
@@ -134,7 +134,7 @@ export default {
       console.log(error)
     },
     OnFacebookAuthSuccess (token,id,name,email) {
-      this.$http.get(`https://localhost:44394/Account/IsEmailExist?email=${email}`).then(response => {
+      this.$http.get(process.env.VUE_APP_API+`/Account/IsEmailExist?email=${email}`).then(response => {
         if(response.data){
           this.login.email = email
           this.login.password = id
@@ -153,11 +153,11 @@ export default {
     //------------------------
     OnRegister(){
       if(this.user.email!=''&this.user.password!=''&this.user.name!=''){
-        this.$http.get(`https://localhost:44394/Account/IsEmailExist?email=${this.user.email}`).then(response => {
+        this.$http.get(process.env.VUE_APP_API+`/Account/IsEmailExist?email=${this.user.email}`).then(response => {
           if(response.data){
             this.makeToast('很抱歉，信箱已經存在')
           }else{
-            this.$http.post(`https://localhost:44394/Account/Register?email=${this.user.email}&password=${this.user.password}&name=${this.user.name}`).then(response => {
+            this.$http.post(process.env.VUE_APP_API+`4/Account/Register?email=${this.user.email}&password=${this.user.password}&name=${this.user.name}`).then(response => {
               if(response.data=='1'){
                 this.makeToast('註冊成功')
                 this.login.email = this.user.email
@@ -177,10 +177,10 @@ export default {
       if(this.login.email!=''&this.login.password!=''){
         
         // ------------核對使用者帳號密碼
-        this.$http.get(`https://localhost:44394/Account/Authorize?email=${this.login.email}&password=${this.login.password}`).then(response => {
+        this.$http.get(process.env.VUE_APP_API+`/Account/Authorize?email=${this.login.email}&password=${this.login.password}`).then(response => {
           if(response.data){
               //----------登入成功，取得TOKEN
-              this.$http.get(`https://localhost:44394/Account?Email=${this.login.email}&Password=${this.login.password}`).then(response => {
+              this.$http.get(process.env.VUE_APP_API+`/Account?Email=${this.login.email}&Password=${this.login.password}`).then(response => {
                   this.login.token = response.data.token
                   this.login.name = response.data.name
                   if (this.login.token!=null) {

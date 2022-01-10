@@ -105,18 +105,18 @@ export default {
     }
   },mounted(){
     //  撈 ProductNo 的資料
-    this.$http.get(`https://localhost:44394/Product/GetProduct?no=${this.productNo}`)
+    this.$http.get(process.env.VUE_APP_API+`/Product/GetProduct?no=${this.productNo}`)
       .then(response => {
         console.log(response.data)
         this.items = response.data[0]
       });
     //  撈  ProductNo裡所有Item 的 Image 圖片
-    this.$http.get(`https://localhost:44394/Product/GetProductImage?no=${this.productNo}`)
+    this.$http.get(process.env.VUE_APP_API+`/Product/GetProductImage?no=${this.productNo}`)
       .then(response => {
         this.images = response.data;
       });  
     //  撈 ProductNo裡所有Item的規格資料
-    this.$http.get(`https://localhost:44394/Product/GetItemSpecification?no=${this.productNo}`)
+    this.$http.get(process.env.VUE_APP_API+`/Product/GetItemSpecification?no=${this.productNo}`)
       .then(response => {
         this.specification = response.data;
       });
@@ -126,7 +126,7 @@ export default {
      //  選擇規格後 顯示 Item 裡相對應的尺寸資料
     specificationChange(){
       if(this.productNo!=null&this.specificationselected!=null){
-        this.$http.get(`https://localhost:44394/Product/GetItemMeasurement?no=${this.productNo}&specification=${this.specificationselected}`)
+        this.$http.get(process.env.VUE_APP_API+`/Product/GetItemMeasurement?no=${this.productNo}&specification=${this.specificationselected}`)
         .then(response => {
           this.measurement = response.data;
         });
