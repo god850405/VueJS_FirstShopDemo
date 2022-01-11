@@ -58,12 +58,12 @@ const store = new Vuex.Store({
     },
     cartInsert(state, data) {
       var item = {
-        ProductNo: data.ProductNo,
-        ProductTitle: data.ProductTitle,
-        ProductSpecification: (data.ProductSpecification!=null) ? data.ProductSpecification : '未選',
-        ProductMeasurement: (data.ProductMeasurement!=null) ? data.ProductMeasurement : '未選',
-        ProductQuantity: (data.ProductQuantity!=null) ? data.ProductQantity : 1,
-        ProductPrice: data.ProductPrice
+        productno: data.productno,
+        producttitle: data.producttitle,
+        productspecification: (data.productspecification!=null) ? data.productspecification : '未選',
+        productmeasurement: (data.productmeasurement!=null) ? data.productmeasurement : '未選',
+        productquantity: (data.productquantity!=null) ? data.ProductQantity : 1,
+        productprice: data.productprice
       };
       state.items.push(item);
       state.itemsCount++

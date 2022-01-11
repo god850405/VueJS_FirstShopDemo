@@ -11,7 +11,7 @@
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
           <!-- Right aligned nav items -->
-          <b-navbar-nav class="ml-auto"> 
+          <b-navbar-nav class="ml-auto">
             <b-nav-item id="CartPopover" @click="Cart" right>
               <b-icon icon="Cart4" aria-hidden="true"></b-icon>
               購物車
@@ -25,8 +25,8 @@
             >
               <template #title><b-icon icon="Cart4" aria-hidden="true"></b-icon>我的購物車</template>
               <b-table  :items="items" :fields="fields"  >
-                <template #cell(ProductPrice)="row">
-                  <p style="color:red;">${{row.item.ProductPrice}}</p>
+                <template #cell(productprice)="row">
+                  <p style="color:red;">${{row.item.productprice}}</p>
                 </template>
                 <template #cell(actions)="row">
                   <a v-on:click="cancelCart(row.index)">
@@ -68,7 +68,7 @@
               </div>
               <sidebar></sidebar>
         </template>
-      
+
     </b-sidebar>
   </div>
 </template>
@@ -82,12 +82,12 @@ export default {
   data(){
     return{
         fields: [
-          {key: 'ProductNo', label: '商品編號',class: 'field-center'},
-          { key: 'ProductTitle', label: '名稱'},
-          { key: 'ProductSpecification', label: '規格',class:'field-center'},
-          { key: 'ProductMeasurement', label: '尺寸',class:'field-center'},
-          { key: 'ProductQuantity', label: '數量',class: 'field-center'},
-          { key: 'ProductPrice',label: '單價', class: 'field-center'},
+          {key: 'productno', label: '商品編號',class: 'field-center'},
+          { key: 'producttitle', label: '名稱'},
+          { key: 'productspecification', label: '規格',class:'field-center'},
+          { key: 'productmeasurement', label: '尺寸',class:'field-center'},
+          { key: 'productquantity', label: '數量',class: 'field-center'},
+          { key: 'productprice',label: '單價', class: 'field-center'},
           { key: 'actions', label: '動作' ,class:'field-center'}
         ]
     }
@@ -121,7 +121,7 @@ export default {
           this.$store.commit(types.LOGOUT)
           this.$store.commit("resetUser")
           this.$root.$bvToast.toast(
-            '登出成功', 
+            '登出成功',
             {
               title: '小提醒',
               autoHideDelay: 2000,
@@ -136,8 +136,8 @@ export default {
       }
     },
     cancelCart(index){
-      // 被取消的 row.index 
-      console.log(`取消第 (${index}) 筆` );  
+      // 被取消的 row.index
+      console.log(`取消第 (${index}) 筆` );
       this.$store.commit("cartDelete",index)
     }
   }
@@ -175,7 +175,7 @@ html,body{
 }
 
 .popoverCart{
-  min-width: 300px; 
+  min-width: 300px;
 }
 .field-price{
   color:red;

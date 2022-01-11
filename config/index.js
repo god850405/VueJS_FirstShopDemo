@@ -4,7 +4,6 @@ const path = require('path')
 
 module.exports = {
     dev: {
-        VUE_APP_TITLE: '購物網站練習',
         // Paths
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
@@ -20,7 +19,8 @@ module.exports = {
         devtool: 'cheap-module-eval-source-map',
         cacheBusting: true,
 
-        cssSourceMap: true
+        cssSourceMap: true,
+        VUE_APP_TITLE: '購物網站練習',
     },
 
     build: {

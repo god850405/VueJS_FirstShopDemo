@@ -11,39 +11,39 @@
                                         <strong>Loading...</strong>
                                 </div>
                             </template>
-                            <template #cell(ProductTitle)="row">
-                                <router-link 
-                                    :to="{name:'item',params:{id:row.item.ProductNo}}">
-                                    {{row.item.ProductTitle}}
+                            <template #cell(producttitle)="row">
+                                <router-link
+                                    :to="{name:'item',params:{id:row.item.productno}}">
+                                    {{row.item.producttitle}}
                                 </router-link>
                             </template>
-                            <template #cell(ProductSpecification)="row">
-                                <b-form-select 
-                                    v-model="row.item.ProductSpecification" 
-                                    v-bind:change="specificationChange(row.index)">
-                                        <b-form-select-option :value="s.ItemSpecification" v-for="(s,i) in specification[row.index]" :key=i>
-                                            {{s.ItemSpecification}}
+                            <template #cell(productspecification)="row">
+                                <b-form-select
+                                    v-model="row.item.productspecification"
+                                    @change="specificationChange(row.index)">
+                                        <b-form-select-option :value="s.itemspecification" v-for="(s,i) in specification[row.index]" :key=i>
+                                            {{s.itemspecification}}
                                         </b-form-select-option>
                                 </b-form-select>
                             </template>
-                            <template #cell(ProductMeasurement)="row">
-                                <b-form-select 
-                                    v-model="row.item.ProductMeasurement" 
+                            <template #cell(productmeasurement)="row">
+                                <b-form-select
+                                    v-model="row.item.productmeasurement"
                                     >
-                                        <b-form-select-option :value="m.ItemMeasurement" v-for="(m,j) in measurement[row.index]" :key=j>
-                                        {{m.ItemMeasurement}}
+                                        <b-form-select-option :value="m.itemmeasurement" v-for="(m,j) in measurement[row.index]" :key=j>
+                                        {{m.itemmeasurement}}
                                         </b-form-select-option>
                                 </b-form-select>
                             </template>
-                            <template #cell(ProductQuantity)="row">
-                                <b-form-spinbutton 
-                                    id="sb-inline" 
-                                    v-model="row.item.ProductQuantity" 
+                            <template #cell(productquantity)="row">
+                                <b-form-spinbutton
+                                    id="sb-inline"
+                                    v-model="row.item.productquantity"
                                     inline>
                                 </b-form-spinbutton>
                             </template>
-                            <template #cell(ProductPrice)="row">
-                                <p style="color:red;">${{row.item.ProductPrice}}</p>
+                            <template #cell(productprice)="row">
+                                <p style="color:red;">${{row.item.productprice}}</p>
                             </template>
                             <template #cell(actions)="row">
                                 <a v-on:click="cancelCart(row.index)">
@@ -99,7 +99,7 @@
                                     </b-col>
                                     <b-col sm="2">
                                         <b-form-select v-model="User.countrySelected" @change="countrychanged_user" >
-                                            <b-form-select-option 
+                                            <b-form-select-option
                                             :value="country.districts"
                                             v-for="(country,i) in User.countryList" :key="i">
                                                 {{country.name}}</b-form-select-option>
@@ -194,7 +194,7 @@
                                 </b-col>
                                 <b-col sm="2">
                                     <b-form-select v-model="Recipient.countrySelected" @change="countrychanged_recipient" >
-                                        <b-form-select-option 
+                                        <b-form-select-option
                                         :value="country.districts"
                                         v-for="(country,i) in Recipient.countryList" :key="i">
                                             {{country.name}}</b-form-select-option>
@@ -225,7 +225,7 @@
                         </section>
                     </b-card>
                 </b-tab>
-            </b-tabs>  
+            </b-tabs>
         </b-card>
     </div>
 </template>
@@ -234,23 +234,23 @@ let taiwan_districts = require('../assets/taiwan_districts.js');
 export default {
     data(){
         return{
-            tabIndex: 0, 
+            tabIndex: 0,
             stepTwoValidate:false,
             //-----第一步
             tableBusy:false,
             cartfields: [
-                { key: 'ProductNo', label: '商品編號',class: 'field-center'},
-                { key: 'ProductTitle', label: '名稱',},
-                { key: 'ProductSpecification', label: '規格',class:'field-center'},
-                { key: 'ProductMeasurement', label: '尺寸',class:'field-center'},
-                { key: 'ProductQuantity', label: '數量',class: 'field-center'},
-                { key: 'ProductPrice',label: '單價', class: 'field-center'},
+                { key: 'productno', label: '商品編號',class: 'field-center'},
+                { key: 'producttitle', label: '名稱',},
+                { key: 'productspecification', label: '規格',class:'field-center'},
+                { key: 'productmeasurement', label: '尺寸',class:'field-center'},
+                { key: 'productquantity', label: '數量',class: 'field-center'},
+                { key: 'productprice',label: '單價', class: 'field-center'},
                 { key: 'actions', label: '動作' ,class:'field-center'}
             ],
             specification:[],
             measurement: [], // Item 尺寸
-            // specification: [{ItemSpecification:'黑'},{ItemSpecification:'白'}], 
-            // measurement:  [{ItemMeasurement:'M',ItemNo:'1'},{ItemMeasurement:'L',ItemNo:'1'},{ItemMeasurement:'XL',ItemNo:'1'}], 
+            // specification: [{ItemSpecification:'黑'},{ItemSpecification:'白'}],
+            // measurement:  [{ItemMeasurement:'M',ItemNo:'1'},{ItemMeasurement:'L',ItemNo:'1'},{ItemMeasurement:'XL',ItemNo:'1'}],
             //-----第二步
             //----個人資料確認
             User:{
@@ -293,7 +293,7 @@ export default {
         Sum(){
             var sum=0
             this.$store.state.items.forEach(item => {
-                sum+=item.ProductQuantity*item.ProductPrice
+                sum+=item.productquantity*item.productprice
             });
             return sum
         },
@@ -308,14 +308,14 @@ export default {
         }
         //------第二步
         //------第三步
-    
+
     },mounted() {
         this.tableBusy = true
         this.User.email = this.$store.state.user
         this.User.name = this.$store.state.name
         this.$store.state.items.forEach(item => {
-            // console.log(`NO : ${item.ProductNo}`)
-            this.$http.get(process.env.VUE_APP_API+`/Product/GetItemSpecification?no=${item.ProductNo}`)
+            // console.log(`NO : ${item.productno}`)
+            this.$http.get(process.env.VUE_APP_API+`/Product/GetItemSpecification?no=${item.productno}`)
                 .then(response => {
                     this.specification.push(response.data)
                 });
@@ -323,25 +323,25 @@ export default {
         this.tableBusy = false
     }
     ,methods:{
-        tabActivated(newTabIndex,oldTabIndex, event){ 
-            if(oldTabIndex==0 && newTabIndex==2){
+        tabActivated(newTabIndex,oldTabIndex, event){
+            if(oldTabIndex===0 && newTabIndex===2){
                 event.preventDefault();
             }
-            if(oldTabIndex==1){
-                if(!this.stepTwoValidate&&newTabIndex==2){
+            if(oldTabIndex===1){
+                if(!this.stepTwoValidate&&newTabIndex===2){
                     event.preventDefault();
                 }
             }
         },
-        
+
         //-----第一步
          //  選擇規格後 顯示 Item 裡相對應的尺寸資料
         specificationChange(i){
             this.tableBusy = true
             var item = this.$store.state.items[i]
-            //console.log(`NO : ${item.ProductNo} SPE  ${item.ProductSpecification}`)
-            if(item.ProductNo!=null&&item.ProductSpecification!='未選'){
-                this.$http.get(process.env.VUE_APP_API+`/Product/GetItemMeasurement?no=${item.ProductNo}&specification=${item.ProductSpecification}`)
+            //console.log(`NO : ${item.productno} SPE  ${item.productspecification}`)
+            if(item.productno!=null&&item.productspecification!=='未選'){
+                this.$http.get(process.env.VUE_APP_API+`/Product/GetItemMeasurement?no=${item.productno}&specification=${item.productspecification}`)
                 .then(response => {
                     // this.measurement[i] = response.data;
                     this.$set(this.measurement,i,response.data)
@@ -351,7 +351,7 @@ export default {
         },
         cancelCart(index){
             this.tableBusy = true
-            // 被取消的 row.index 
+            // 被取消的 row.index
             this.$store.commit("cartDelete",index)
             this.specification.splice(index,1)
             this.measurement.splice(index,1)
@@ -365,7 +365,7 @@ export default {
             this.Recipient.districtList=list
         },
         ShippingChanged(){
-            if(this.ShippingSelected!='D')
+            if(this.ShippingSelected!=='D')
             {
                 this.PaymentSelected = null
                 this.PaymentDisabled.CreditCard = false
@@ -385,9 +385,9 @@ export default {
             const Recipient = this.Recipient
             const ShippingSelected = this.ShippingSelected
             const PaymentSelected = this.PaymentSelected
-            if(User.phone!=''&&User.address!=''&&User.countrySelected!=''&&User.districtSelected!=''&&Recipient.email!=''&&Recipient.name!=''&&Recipient.phone!=''&&Recipient.address!=''&&Recipient.districtSelected!=''&&Recipient.countrySelected!=''&&ShippingSelected!=''&&PaymentSelected!=''){
+            if(User.phone!==''&&User.address!==''&&User.countrySelected!==''&&User.districtSelected!==''&&Recipient.email!==''&&Recipient.name!==''&&Recipient.phone!==''&&Recipient.address!==''&&Recipient.districtSelected!==''&&Recipient.countrySelected!==''&&ShippingSelected!==''&&PaymentSelected!==''){
                 this.$store.commit({
-                    type:"setOrder", 
+                    type:"setOrder",
                     OrdererEmail    : User.email ,
                     OrdererName     : User.name ,
                     OrdererPhone    : User.phone ,
@@ -399,7 +399,7 @@ export default {
                     RecipientPhone  : Recipient.phone ,
                     RecipientAddess : Recipient.countrySelected+Recipient.districtSelected+Recipient.address
                 })
-                this.stepTwoValidate = true 
+                this.stepTwoValidate = true
                 this.tabIndex++
             }
         },

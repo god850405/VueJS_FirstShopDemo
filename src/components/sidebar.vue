@@ -5,7 +5,7 @@
         </div>
         <div class="sideContent">
             <b-list-group>
-                <b-list-group-item 
+                <b-list-group-item
                 v-for="item in  items"
                 :key="item.itemNo"
                 @click="itemSelected(item.itemNo)"
@@ -15,7 +15,7 @@
                 </b-list-group-item>
             </b-list-group>
         </div>
-        
+
     </div>
 </template>
 <script>
@@ -59,7 +59,7 @@ export default {
         text-decoration: none;
     }
     .sidebar{
-        height: calc(inherit - 20vh); /*自動填滿瀏覽器高度*/
+        height: calc(100% - 20vh); /*自動填滿瀏覽器高度*/
         /*第一層flex--header、center、footer標籤垂直排列*/
         display: flex;
         flex-direction: column;

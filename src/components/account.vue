@@ -42,7 +42,7 @@
             </b-input-group>
             <hr>
             <b-button class="login-button" v-on:click="OnForgot">發送郵件</b-button>
-            
+
           </b-form-group>
         </b-card>
       </b-tab>
@@ -152,13 +152,13 @@ export default {
     },
     //------------------------
     OnRegister(){
-      if(this.user.email!=''&this.user.password!=''&this.user.name!=''){
+      if(this.user.email&&this.user.password&&this.user.name){
         this.$http.get(process.env.VUE_APP_API+`/Account/IsEmailExist?email=${this.user.email}`).then(response => {
           if(response.data){
             this.makeToast('很抱歉，信箱已經存在')
           }else{
             this.$http.post(process.env.VUE_APP_API+`4/Account/Register?email=${this.user.email}&password=${this.user.password}&name=${this.user.name}`).then(response => {
-              if(response.data=='1'){
+              if(response.data==='1'){
                 this.makeToast('註冊成功')
                 this.login.email = this.user.email
                 this.login.password = this.user.password
@@ -174,8 +174,8 @@ export default {
       }
     },
     OnLogin(){
-      if(this.login.email!=''&this.login.password!=''){
-        
+      if(this.login.email&&this.login.password){
+
         // ------------核對使用者帳號密碼
         this.$http.get(process.env.VUE_APP_API+`/Account/Authorize?email=${this.login.email}&password=${this.login.password}`).then(response => {
           if(response.data){
@@ -187,7 +187,7 @@ export default {
                       //儲存在本地的localStograge中
                       this.$store.commit(types.LOGIN, this.login.token)
                       this.$store.commit({
-                          type:"setUser", 
+                          type:"setUser",
                           email:this.login.email,
                           name:this.login.name
                         })
@@ -213,7 +213,7 @@ export default {
       }
     },
     OnForgot(){
-      if(this.forgot.email!=''){
+      if(this.forgot.email){
         console.log("忘記 TRUE");
       }else{
         console.log("忘記 FALSE");
