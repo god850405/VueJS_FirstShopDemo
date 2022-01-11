@@ -103,11 +103,11 @@ export default {
       return this.$store.state.itemsCount
     },
     LoginStatusText(){
-      return (this.$store.state.token!=null) ? '登出' : '登入/註冊'
+      return this.$store.state.token ? '登出' : '登入/註冊'
     }
     ,
     LoginStatus(){
-      return (this.$store.state.token!=null) ? true : false
+      return !!this.$store.state.token
     }
   },
   methods:{

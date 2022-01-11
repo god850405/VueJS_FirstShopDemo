@@ -1,9 +1,11 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import * as types from "@/types";
-
+import * as types from "../types";
+import VuexPersistence from 'vuex-persist'
 Vue.use(Vuex);
-
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage
+})
 const store = new Vuex.Store({
   state: {
     token: null,// Token
@@ -30,6 +32,7 @@ const store = new Vuex.Store({
       RecipientAddess:''
     }
   },
+  plugins: [vuexLocal.plugin],
   actions: {},
   mutations: {
     //登入成功將, token儲存在localStorage中
