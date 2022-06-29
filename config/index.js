@@ -30,7 +30,7 @@ module.exports = {
         // Paths
         assetsRoot: path.resolve(__dirname, '../dist'),
         assetsSubDirectory: 'static',
-        assetsPublicPath: '/VueJS_FirstShopDemo/',
+        assetsPublicPath: '/',
 
         /**
          * Source Maps
